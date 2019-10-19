@@ -1,23 +1,18 @@
-﻿using System;
+﻿using ContactCA.Api.Controllers;
+using Microsoft.VisualStudio.TestTools.UnitTesting;
 using System.Collections.Generic;
 using System.Linq;
-using System.Net.Http;
-using System.Text;
-using System.Web.Http;
-using Microsoft.VisualStudio.TestTools.UnitTesting;
-using ContactCA.Api;
-using ContactCA.Api.Controllers;
 
 namespace ContactCA.Api.Tests.Controllers
 {
    [TestClass]
-   public class ValuesControllerTest
+   public class ContactControllerTest
    {
       [TestMethod]
       public void Get()
       {
          // Arrange
-         ValuesController controller = new ValuesController();
+         ContactController controller = new ContactController();
 
          // Act
          IEnumerable<string> result = controller.Get();
@@ -27,13 +22,14 @@ namespace ContactCA.Api.Tests.Controllers
          Assert.AreEqual(2, result.Count());
          Assert.AreEqual("value1", result.ElementAt(0));
          Assert.AreEqual("value2", result.ElementAt(1));
+
       }
 
       [TestMethod]
       public void GetById()
       {
          // Arrange
-         ValuesController controller = new ValuesController();
+         ContactController controller = new ContactController();
 
          // Act
          string result = controller.Get(5);
@@ -46,7 +42,7 @@ namespace ContactCA.Api.Tests.Controllers
       public void Post()
       {
          // Arrange
-         ValuesController controller = new ValuesController();
+         ContactController controller = new ContactController();
 
          // Act
          controller.Post("value");
@@ -58,7 +54,7 @@ namespace ContactCA.Api.Tests.Controllers
       public void Put()
       {
          // Arrange
-         ValuesController controller = new ValuesController();
+         ContactController controller = new ContactController();
 
          // Act
          controller.Put(5, "value");
@@ -70,7 +66,7 @@ namespace ContactCA.Api.Tests.Controllers
       public void Delete()
       {
          // Arrange
-         ValuesController controller = new ValuesController();
+         ContactController controller = new ContactController();
 
          // Act
          controller.Delete(5);
