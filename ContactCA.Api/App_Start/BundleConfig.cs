@@ -1,5 +1,4 @@
-﻿using System.Web;
-using System.Web.Optimization;
+﻿using System.Web.Optimization;
 
 namespace ContactCA.Api
 {
@@ -22,6 +21,12 @@ namespace ContactCA.Api
          bundles.Add(new StyleBundle("~/Content/css").Include(
                    "~/Content/bootstrap.css",
                    "~/Content/site.css"));
+
+         // contact
+         bundles.Add(new ScriptBundle("~/bundles/contact").Include(
+            "~/Models/ClientViewModels/ContactViewModel.js"));
+         bundles.Add(new StyleBundle("~/Content/contact").Include(
+            "~/Content/ContactCA/contact.css"));
       }
    }
 }

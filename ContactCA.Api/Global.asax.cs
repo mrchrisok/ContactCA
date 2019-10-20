@@ -44,6 +44,12 @@ namespace ContactCA.Api
          builder.RegisterApiControllers(typeof(WebApiApplication).Assembly)
             .InstancePerRequest().PropertiesAutowired();
 
+         // repositories .. done in module
+         //builder.RegisterAssemblyTypes(typeof(ContactRepository).Assembly)
+         //   .Where(t => t.Name.EndsWith("Repository"))
+         //   .As(t => t.GetInterfaces()?.FirstOrDefault(i => i.Name == "I" + t.Name))
+         //   .InstancePerRequest();
+
          // register other types
          IConfigurationBuilder config = new ConfigurationBuilder();
          config.AddJsonFile("autofac.json");

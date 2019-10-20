@@ -1,7 +1,7 @@
 {
     "defaultAssembly": "ContactCA.Api",
     "modules": [
-        { "type": "ContactCA.Core.RepositoryRegistrationModule" }
+        { "type": "ContactCA.Api.Core.RepositoryRegistrationModule" }
     ],
     "components": [
         {
@@ -18,6 +18,14 @@
             "services": [
                 {
                     "type": "AppCore.ILogger, AppCore"
+                }
+            ]
+        },
+        {
+            "type": "ContactCA.Api.Core.LocalStrings",
+            "services": [
+                {
+                    "type": "ContactCA.Api.Core.ILocalStrings"
                 }
             ]
         }
