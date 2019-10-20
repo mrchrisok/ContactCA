@@ -1,37 +1,44 @@
 ﻿@model ContactCA.Api.Models.ContactViewModel
-    @{
-        var localStrings = DependencyResolver.Current.GetService<ContactCA.Api.Core.ILocalStrings>();
-    }
-    @section pageStyles{
-        @Styles.Render("~/Content/contact")
-    }
-    @section pageScripts{
-        @Scripts.Render("~/bundles/contact")
-    }
-    <div class="container">
-        <form id="contact" action="" method="post">
-            <h3>Quick Contact</h3>
-            <h4>Contact us today, and get reply with in 24 hours!</h4>
-            <fieldset>
-                <input placeholder="First name" type="text" tabindex="1" required autofocus>
-            </fieldset>
-            <fieldset>
-                <input placeholder="Last name" type="text" tabindex="2" required autofocus>
-            </fieldset>
-            <fieldset>
-                <input placeholder="Your Email Address" type="email" tabindex="3" required>
-            </fieldset>
-            <fieldset>
-                <input placeholder="Your Phone Number" type="tel" tabindex="4" required>
-            </fieldset>
-            <fieldset>
-                <input placeholder="Your Web Site starts with http://" type="url" tabindex="5" required>
-            </fieldset>
-            <fieldset>
-                <textarea placeholder="Type your Message Here...." tabindex="6" required></textarea>
-            </fieldset>
-            <fieldset>
-                <button name="submit" type="submit" id="contact-submit" data-submit="...Sending">Submit</button>
-            </fieldset>
-        </form>
-    </div>
+@{
+    var localStrings = DependencyResolver.Current.GetService<ContactCA.Api.Core.ILocalStrings>();
+}
+@section pageStyles{
+    @Styles.Render("~/Content/contact")
+}
+@section pageScripts{
+    @Scripts.Render("~/bundles/contact")
+}
+@section ko_apply
+{
+    var viewModel = new contactViewModel();
+    ko.applyBindings(viewModel, $("#contact")[0]);
+}
+<div id="contact" class="container">
+    <form id="contactForm" data-bind="submit: addContact">
+        <h3>Need More Information?</h3>
+        <h4>Contact us today. We will reply within 24 hours!</h4>
+        <fieldset>
+            <input placeholder="First name" type="text" tabindex="1" required autofocus data-bind="value: firstName">
+        </fieldset>
+        <fieldset>
+            <input placeholder="Last name" type="text" tabindex="2" required autofocus data-bind="value: lastName">
+        </fieldset>
+        <fieldset>
+            <input placeholder="Your Email Address" type="email" tabindex="3" required data-bind="value: email">
+        </fieldset>
+        <fieldset>
+            <input placeholder="Your Phone Number" type="tel" tabindex="4" required data-bind="value: phoneNumber">
+        </fieldset>
+        <fieldset>
+            <input placeholder="Best day to call" type="text" tabindex="5" required data-bind="value: bestDateToCall">
+        </fieldset>
+        <fieldset>
+            <input placeholder="Best time to call" type="text" tabindex="6" required data-bind="value: bestTimeToCall">
+        </fieldset>
+        <fieldset>
+            <button name="submit" type="submit" id="contact-submit" data-submit="...Sending">Submit</button>
+            &nbsp;&nbsp;
+            <span data-bind="text: message"></span>
+        </fieldset>
+    </form>
+</div>

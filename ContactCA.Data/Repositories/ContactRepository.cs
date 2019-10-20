@@ -8,6 +8,10 @@ namespace ContactCA.Data.Repositories
 {
    public class ContactRepository : ContactCARepositoryBase<Contact>, IContactRepository
    {
+      public ContactRepository()
+      {
+      }
+
       #region Members.Override
 
       protected override Contact AddEntity(ContactCADbContext entityContext, Contact entity)
@@ -75,12 +79,12 @@ namespace ContactCA.Data.Repositories
 
       public IEnumerable<Contact> GetContactsByCallDateRange(DateTime dateBottom, DateTime dateTop)
       {
-         return GetContacts().Where(x => x.BestCallTime.Date >= dateBottom.Date && x.BestCallTime.Date <= dateTop.Date);
+         return GetContacts().Where(x => x.BestCallDateTime.Date >= dateBottom.Date && x.BestCallDateTime.Date <= dateTop.Date);
       }
 
       public IEnumerable<Contact> GetContactByCallTimeRange(DateTime timeBottom, DateTime timeTop)
       {
-         return GetContacts().Where(x => x.BestCallTime.TimeOfDay >= timeBottom.TimeOfDay && x.BestCallTime.TimeOfDay <= timeTop.TimeOfDay);
+         return GetContacts().Where(x => x.BestCallDateTime.TimeOfDay >= timeBottom.TimeOfDay && x.BestCallDateTime.TimeOfDay <= timeTop.TimeOfDay);
       }
       #endregion
    }

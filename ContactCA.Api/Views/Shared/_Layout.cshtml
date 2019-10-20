@@ -40,6 +40,12 @@
 
     @Scripts.Render("~/bundles/jquery")
     @Scripts.Render("~/bundles/bootstrap")
+    @Scripts.Render("~/bundles/knockout")
     @RenderSection("pageScripts", required: false)
+    <script type="text/javascript">
+        $(document).ready(function () {
+            @RenderSection("ko_apply", required: false)
+        });
+    </script>
 </body>
 </html>

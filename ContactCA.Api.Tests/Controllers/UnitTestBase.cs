@@ -69,8 +69,8 @@ namespace ContactCA.Api.Tests.Controllers
                ContactID = 1,
                FirstName = "Mike",
                LastName = "Tyson",
-               Telephone = "2223334444",
-               BestCallTime = DateTime.UtcNow.AddDays(1).AddHours(1).AddMinutes(15),
+               PhoneNumber = "2223334444",
+               BestCallDateTime = DateTime.UtcNow.AddDays(1).AddHours(1).AddMinutes(15),
                DateCreated = DateTime.UtcNow.AddDays(-3).AddHours(1).AddMinutes(15)
             },
             new Contact()
@@ -78,8 +78,8 @@ namespace ContactCA.Api.Tests.Controllers
                ContactID = 2,
                FirstName = "Yogi",
                LastName = "Bear",
-               Telephone = "2223334444",
-               BestCallTime = DateTime.UtcNow.AddDays(1).AddHours(3).AddMinutes(30),
+               PhoneNumber = "2223334444",
+               BestCallDateTime = DateTime.UtcNow.AddDays(1).AddHours(3).AddMinutes(30),
                DateCreated = DateTime.UtcNow.AddDays(-2).AddHours(3).AddMinutes(30)
             },
             new Contact()
@@ -87,8 +87,8 @@ namespace ContactCA.Api.Tests.Controllers
                ContactID = 3,
                FirstName = "Donald",
                LastName = "Trump",
-               Telephone = "2223334444",
-               BestCallTime = DateTime.UtcNow.AddDays(1).AddHours(1).AddMinutes(15),
+               PhoneNumber = "2223334444",
+               BestCallDateTime = DateTime.UtcNow.AddDays(1).AddHours(1).AddMinutes(15),
                DateCreated = DateTime.UtcNow.AddDays(-1).AddHours(5).AddMinutes(45)
             }
          };

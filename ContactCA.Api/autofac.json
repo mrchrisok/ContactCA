@@ -10,8 +10,7 @@
                 {
                     "type": "AppCore.IComponentResolver, AppCore"
                 }
-            ],
-            "instanceScope": "single-instance"
+            ]
         },
         {
             "type": "AppCore.Logger, AppCore",

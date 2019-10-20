@@ -1,4 +1,5 @@
 ﻿using AppCore;
+using ContactCA.Api.Models;
 using ContactCA.Data.Entities;
 using ContactCA.Data.Repositories.Contracts;
 using System.Linq;
@@ -66,9 +67,16 @@ namespace ContactCA.Api.Controllers
       [AllowAnonymous]
       [HttpPost]
       [Route("add")]
-      public Contact AddContact([FromBody]Contact contact)
+      public ContactViewModel AddContact([FromBody]ContactViewModel contact)
       {
-         return _contactRepository.Add(contact);
+         contact.BestCallDateTime = contact.BestCallDate.Date.Add(contact.BestCallTime.TimeOfDay);
+
+         var savedContact = _contactRepository.Add(contact);
+
+         var model = new ContactViewModel();
+         SimpleMapper.MapProperties(savedContact, model);
+
+         return model;
       }
 
       [HttpPut]

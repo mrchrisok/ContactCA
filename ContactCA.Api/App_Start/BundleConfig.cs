@@ -22,6 +22,11 @@ namespace ContactCA.Api
                    "~/Content/bootstrap.css",
                    "~/Content/site.css"));
 
+         //knockout
+         bundles.Add(new ScriptBundle("~/bundles/knockout").Include(
+             "~/Scripts/knockout-3.5.0.js",
+             "~/Scripts/knockout.mapping-latest.js"));
+
          // contact
          bundles.Add(new ScriptBundle("~/bundles/contact").Include(
             "~/Models/ClientViewModels/ContactViewModel.js"));

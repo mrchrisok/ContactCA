@@ -11,8 +11,8 @@ namespace ContactCA.Data.Entities
          Property(x => x.FirstName).HasColumnOrder(++i).IsRequired();
          Property(x => x.LastName).HasColumnOrder(++i).IsRequired();
          Property(x => x.Email).HasColumnOrder(++i).IsRequired();
-         Property(x => x.Telephone).HasColumnOrder(++i).IsRequired();
-         Property(x => x.BestCallTime).HasColumnOrder(++i).IsRequired();
+         Property(x => x.PhoneNumber).HasColumnOrder(++i).IsRequired();
+         Property(x => x.BestCallDateTime).HasColumnOrder(++i).IsRequired();
       }
    }
 }
