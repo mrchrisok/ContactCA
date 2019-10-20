@@ -11,6 +11,19 @@
    self.bestTimeToCall = ko.observable('');
    self.message = ko.observable('');
 
+   self.initialize = function () {
+      $('#datetimepicker').datetimepicker({
+         format: 'DD/MM/YYYY',
+         useCurrent: true,
+         keepOpen: true,
+         allowInputToggle: true,
+         maxDate: new Date(),
+         ignoreReadonly: true,
+         showTodayButton: true,
+         viewMode: 'days'
+      });
+   };
+
    self.addContact = function () {
       self.message('');
       var model = {
@@ -59,6 +72,8 @@
          return text.split('\r\n').join('<br/>');
       }, self);
    };
+
+   //self.initialize();
 }
 
 

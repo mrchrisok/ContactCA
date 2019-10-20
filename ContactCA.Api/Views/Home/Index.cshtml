@@ -1,44 +1,49 @@
-﻿@model ContactCA.Api.Models.ContactViewModel
+﻿@model ContactCA.Api.Models.HomeViewModel
 @{
     var localStrings = DependencyResolver.Current.GetService<ContactCA.Api.Core.ILocalStrings>();
 }
-@section pageStyles{
-    @Styles.Render("~/Content/contact")
-}
-@section pageScripts{
+@section pageScripts
+{
     @Scripts.Render("~/bundles/contact")
+    @Scripts.Render("~/bundles/agency")
 }
 @section ko_apply
 {
     var viewModel = new contactViewModel();
     ko.applyBindings(viewModel, $("#contact")[0]);
 }
-<div id="contact" class="container">
-    <form id="contactForm" data-bind="submit: addContact">
-        <h3>Need More Information?</h3>
-        <h4>Contact us today. We will reply within 24 hours!</h4>
-        <fieldset>
-            <input placeholder="First name" type="text" tabindex="1" required autofocus data-bind="value: firstName">
-        </fieldset>
-        <fieldset>
-            <input placeholder="Last name" type="text" tabindex="2" required autofocus data-bind="value: lastName">
-        </fieldset>
-        <fieldset>
-            <input placeholder="Your Email Address" type="email" tabindex="3" required data-bind="value: email">
-        </fieldset>
-        <fieldset>
-            <input placeholder="Your Phone Number" type="tel" tabindex="4" required data-bind="value: phoneNumber">
-        </fieldset>
-        <fieldset>
-            <input placeholder="Best day to call" type="text" tabindex="5" required data-bind="value: bestDateToCall">
-        </fieldset>
-        <fieldset>
-            <input placeholder="Best time to call" type="text" tabindex="6" required data-bind="value: bestTimeToCall">
-        </fieldset>
-        <fieldset>
-            <button name="submit" type="submit" id="contact-submit" data-submit="...Sending">Submit</button>
-            &nbsp;&nbsp;
-            <span data-bind="text: message"></span>
-        </fieldset>
-    </form>
-</div>
+@if (Model.ShowWelcome)
+{
+    @Html.Partial("~/Views/Home/_Welcome.cshtml");
+}
+@if (Model.ShowServices)
+{
+    @Html.Partial("~/Views/Home/_Services.cshtml")
+}
+
+@if (Model.ShowPortfolio)
+{
+    @Html.Partial("~/Views/Home/_Portfolio.cshtml")
+}
+@if (Model.ShowAbout)
+{
+    @Html.Partial("~/Views/Home/_About.cshtml")
+}
+
+@if (Model.ShowTeam)
+{
+    @Html.Partial("~/Views/Home/_Team.cshtml")
+}
+
+@if (Model.ShowClients)
+{
+    @Html.Partial("~/Views/Home/_Clients.cshtml")
+}
+
+@if (Model.ShowContact)
+{
+    @*removed the InstancePerRequest filter from Autofac to allow this
+        todo: further review scenarios where doing so is ok vs. creating a new controller for the partial*@
+
+    Html.RenderAction("Contact");
+}

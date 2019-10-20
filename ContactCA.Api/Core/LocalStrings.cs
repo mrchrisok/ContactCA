@@ -3,7 +3,7 @@
    public interface ILocalStrings
    {
       string SiteTitle { get; }
-      string PageTitle { get; }
+      string GetPageTitle(string pageId);
 
    }
 
@@ -13,11 +13,11 @@
 
       public string SiteTitle
       {
-         get { return "Contact.CA"; }
+         get { return "ContactCA"; }
       }
-      public string PageTitle
+      public virtual string GetPageTitle(string pageId)
       {
-         get { return "Contact.CA"; }
+         return pageId;
       }
    }
 }

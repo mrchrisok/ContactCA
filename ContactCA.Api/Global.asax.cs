@@ -5,6 +5,7 @@ using Autofac.Configuration;
 using Autofac.Integration.Mvc;
 using Autofac.Integration.WebApi;
 using Microsoft.Extensions.Configuration;
+using System.Reflection;
 using System.Web.Http;
 using System.Web.Mvc;
 using System.Web.Optimization;
@@ -40,7 +41,7 @@ namespace ContactCA.Api
 
          // register controllers
          builder.RegisterControllers(typeof(WebApiApplication).Assembly)
-            .InstancePerRequest().PropertiesAutowired();
+            .PropertiesAutowired();
          builder.RegisterApiControllers(typeof(WebApiApplication).Assembly)
             .InstancePerRequest().PropertiesAutowired();
 
@@ -49,6 +50,16 @@ namespace ContactCA.Api
          //   .Where(t => t.Name.EndsWith("Repository"))
          //   .As(t => t.GetInterfaces()?.FirstOrDefault(i => i.Name == "I" + t.Name))
          //   .InstancePerRequest();
+
+         var assembly = Assembly.GetExecutingAssembly();
+
+         builder.RegisterAssemblyTypes(assembly)
+            .Where(t => t.Name.EndsWith("WorkerService"))
+            .AsImplementedInterfaces();
+
+         builder.RegisterAssemblyTypes(assembly)
+            .Where(t => t.Name.EndsWith("ViewModel"))
+            .AsImplementedInterfaces();
 
          // register other types
          IConfigurationBuilder config = new ConfigurationBuilder();

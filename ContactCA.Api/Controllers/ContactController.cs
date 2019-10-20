@@ -1,5 +1,4 @@
 ﻿using AppCore;
-using ContactCA.Api.Models;
 using ContactCA.Data.Entities;
 using ContactCA.Data.Repositories.Contracts;
 using System.Linq;
@@ -11,15 +10,15 @@ namespace ContactCA.Api.Controllers
    [RoutePrefix("api/contact")]
    public class ContactController : ApiController
    {
-      public ContactController(IComponentResolver iocContainer)
+      public ContactController(IComponentResolver resolver)
       {
          // set up di
 
-         _container = iocContainer;
-         _contactRepository = _container.Resolve<IContactRepository>();
+         _resolver = resolver;
+         _contactRepository = _resolver.Resolve<IContactRepository>();
       }
 
-      protected IComponentResolver _container;
+      protected IComponentResolver _resolver;
       protected IContactRepository _contactRepository;
 
       #region GET methods
@@ -67,16 +66,11 @@ namespace ContactCA.Api.Controllers
       [AllowAnonymous]
       [HttpPost]
       [Route("add")]
-      public ContactViewModel AddContact([FromBody]ContactViewModel contact)
+      public Contact AddContact([FromBody]Contact contact)
       {
-         contact.BestCallDateTime = contact.BestCallDate.Date.Add(contact.BestCallTime.TimeOfDay);
-
          var savedContact = _contactRepository.Add(contact);
 
-         var model = new ContactViewModel();
-         SimpleMapper.MapProperties(savedContact, model);
-
-         return model;
+         return savedContact;
       }
 
       [HttpPut]
