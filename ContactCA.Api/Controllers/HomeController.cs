@@ -1,8 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Web;
-using System.Web.Mvc;
+﻿using System.Web.Mvc;
 
 namespace ContactCA.Api.Controllers
 {
@@ -13,6 +9,11 @@ namespace ContactCA.Api.Controllers
          ViewBag.Title = "Home Page";
 
          return View();
+      }
+
+      public ActionResult Swagger()
+      {
+         return Redirect("~/swagger");
       }
    }
 }

@@ -1,43 +1,95 @@
-﻿using Microsoft.AspNet.Identity;
-using System.Collections.Generic;
+﻿using AppCore;
+using ContactCA.Data.Entities;
+using ContactCA.Data.Repositories.Contracts;
+using System.Linq;
 using System.Web.Http;
 
 namespace ContactCA.Api.Controllers
 {
    [Authorize]
+   [RoutePrefix("api/contact")]
    public class ContactController : ApiController
    {
-      public ContactController()
+      public ContactController(IComponentResolver iocContainer)
       {
          // set up di
+
+         _container = iocContainer;
+         _contactRepository = _container.Resolve<IContactRepository>();
       }
 
-      // GET api/values
-      public IEnumerable<string> Get()
+      protected IComponentResolver _container;
+      protected IContactRepository _contactRepository;
+
+      #region GET methods
+
+      [HttpGet]
+      [Route("get")]
+      public Contact[] GetContacts()
       {
-         var userId = RequestContext.Principal.Identity.GetUserId();
-         return new string[] { "value1", "value2", userId };
+         //var userId = RequestContext.Principal.Identity.GetUserId();
+         //return new string[] { "value1", "value2", userId };
+
+         return _contactRepository.GetContacts().ToArray();
       }
 
-      // GET api/values/5
-      public string Get(int id)
+      [HttpGet]
+      [Route("get/{email}")]
+      public Contact GetContact(string email)
       {
-         return "value";
+         return _contactRepository.GetContact(email);
       }
 
-      // POST api/values
-      public void Post([FromBody]string value)
+      [HttpGet]
+      [Route("get/{id}")]
+      public Contact GetContactById(int id)
       {
+         return _contactRepository.GetContactById(id);
       }
 
-      // PUT api/values/5
-      public void Put(int id, [FromBody]string value)
+      [HttpGet]
+      [Route("get/{firstName}")]
+      public Contact[] GetContactsByFirstName(string firstName)
       {
+         return _contactRepository.GetContactsByFirstName(firstName).ToArray();
       }
 
-      // DELETE api/values/5
-      public void Delete(int id)
+      [HttpGet]
+      [Route("get/{lastName}")]
+      public Contact[] GetContactsByLastName(string lastName)
       {
+         return _contactRepository.GetContactsByLastName(lastName).ToArray();
+      }
+
+      #endregion
+
+      [AllowAnonymous]
+      [HttpPost]
+      [Route("add")]
+      public Contact AddContact([FromBody]Contact contact)
+      {
+         return _contactRepository.Add(contact);
+      }
+
+      [HttpPut]
+      [Route("update")]
+      public Contact UpdateContact([FromBody]Contact contact)
+      {
+         return _contactRepository.Update(contact);
+      }
+
+      [HttpPut]
+      [Route("delete/{id}")]
+      public void DeleteContact(int id)
+      {
+         _contactRepository.Remove(id);
+      }
+
+      [HttpPut]
+      [Route("delete")]
+      public void DeleteContact([FromBody]Contact contact)
+      {
+         _contactRepository.Remove(contact);
       }
    }
 }

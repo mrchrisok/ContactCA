@@ -1,7 +1,10 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Web;
+﻿using AppCore.Mvc;
+using AppCore.WebApi;
+using Autofac;
+using Autofac.Configuration;
+using Autofac.Integration.Mvc;
+using Autofac.Integration.WebApi;
+using Microsoft.Extensions.Configuration;
 using System.Web.Http;
 using System.Web.Mvc;
 using System.Web.Optimization;
@@ -18,6 +21,47 @@ namespace ContactCA.Api
          FilterConfig.RegisterGlobalFilters(GlobalFilters.Filters);
          RouteConfig.RegisterRoutes(RouteTable.Routes);
          BundleConfig.RegisterBundles(BundleTable.Bundles);
+
+         // DI setup
+         var container = GetContainer();
+
+         // resolve controllers from container
+         DependencyResolver.SetResolver(new AutofacDependencyResolver(container));
+         GlobalConfiguration.Configuration.DependencyResolver = new AutofacWebApiDependencyResolver(container);
+
+         // hook up filters
+         GlobalFilters.Filters.Add(container.Resolve<LogMvcActionAttribute>());
+         GlobalConfiguration.Configuration.Filters.Add(container.Resolve<LogWebApiActionAttribute>());
+      }
+
+      private IContainer GetContainer()
+      {
+         ContainerBuilder builder = new ContainerBuilder();
+
+         // register controllers
+         builder.RegisterControllers(typeof(WebApiApplication).Assembly)
+            .InstancePerRequest().PropertiesAutowired();
+         builder.RegisterApiControllers(typeof(WebApiApplication).Assembly)
+            .InstancePerRequest().PropertiesAutowired();
+
+         // register other types
+         IConfigurationBuilder config = new ConfigurationBuilder();
+         config.AddJsonFile("autofac.json");
+
+         ConfigurationModule module = new ConfigurationModule(config.Build());
+
+         // register the container itself .. as IComponentResolver
+         builder.RegisterModule(module);
+
+         // register custom filters
+         builder.RegisterFilterProvider(); //mvc
+         builder.RegisterWebApiFilterProvider(GlobalConfiguration.Configuration);
+         builder.RegisterType<LogMvcActionAttribute>().PropertiesAutowired();
+         builder.RegisterType<LogWebApiActionAttribute>().PropertiesAutowired();
+
+         IContainer container = builder.Build();
+
+         return container;
       }
    }
 }

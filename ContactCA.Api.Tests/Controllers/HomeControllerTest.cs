@@ -1,7 +1,6 @@
-﻿using System.Web.Mvc;
+﻿using ContactCA.Api.Controllers;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
-using ContactCA.Api;
-using ContactCA.Api.Controllers;
+using System.Web.Mvc;
 
 namespace ContactCA.Api.Tests.Controllers
 {

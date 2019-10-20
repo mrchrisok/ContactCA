@@ -7,6 +7,10 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ContactCA.Api", "ContactCA.
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ContactCA.Api.Tests", "ContactCA.Api.Tests\ContactCA.Api.Tests.csproj", "{A2652D4D-D881-4B43-AA7A-853A4A201257}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ContactCA.Data", "ContactCA.Data\ContactCA.Data.csproj", "{08BCF945-2530-4243-8215-769FB0CEB558}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AppCore", "AppCore\AppCore.csproj", "{36891652-690F-4531-8226-40E925C215AB}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -21,6 +25,14 @@ Global
 		{A2652D4D-D881-4B43-AA7A-853A4A201257}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{A2652D4D-D881-4B43-AA7A-853A4A201257}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{A2652D4D-D881-4B43-AA7A-853A4A201257}.Release|Any CPU.Build.0 = Release|Any CPU
+		{08BCF945-2530-4243-8215-769FB0CEB558}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{08BCF945-2530-4243-8215-769FB0CEB558}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{08BCF945-2530-4243-8215-769FB0CEB558}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{08BCF945-2530-4243-8215-769FB0CEB558}.Release|Any CPU.Build.0 = Release|Any CPU
+		{36891652-690F-4531-8226-40E925C215AB}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{36891652-690F-4531-8226-40E925C215AB}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{36891652-690F-4531-8226-40E925C215AB}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{36891652-690F-4531-8226-40E925C215AB}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

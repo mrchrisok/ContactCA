@@ -1,77 +1,82 @@
-﻿using ContactCA.Api.Controllers;
+﻿using AppCore;
+using Autofac;
+using ContactCA.Api.Controllers;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
-using System.Collections.Generic;
 using System.Linq;
+using System.Net.Http;
+using System.Web.Http;
 
 namespace ContactCA.Api.Tests.Controllers
 {
    [TestClass]
-   public class ContactControllerTest
+   public class ContactControllerTest : UnitTestBase
    {
+
       [TestMethod]
-      public void Get()
+      public void get_contacts_test()
       {
          // Arrange
-         ContactController controller = new ContactController();
+         var componentResolver = Container.Resolve<IComponentResolver>();
+         var controller = new ContactController(componentResolver);
 
          // Act
-         IEnumerable<string> result = controller.Get();
+         var result = controller.GetContacts();
 
          // Assert
          Assert.IsNotNull(result);
-         Assert.AreEqual(2, result.Count());
-         Assert.AreEqual("value1", result.ElementAt(0));
-         Assert.AreEqual("value2", result.ElementAt(1));
-
+         Assert.AreEqual(3, result.Count());
       }
 
       [TestMethod]
-      public void GetById()
+      public void get_contacts_by_firstname()
       {
          // Arrange
-         ContactController controller = new ContactController();
+         var componentResolver = Container.Resolve<IComponentResolver>();
+         var controller = new ContactController(componentResolver);
 
          // Act
-         string result = controller.Get(5);
+         var result = controller.GetContactsByFirstName("Mike");
 
          // Assert
-         Assert.AreEqual("value", result);
+         Assert.AreEqual(1, result.Count());
       }
 
       [TestMethod]
-      public void Post()
+      public void get_contact_by_id()
       {
          // Arrange
-         ContactController controller = new ContactController();
+         var componentResolver = Container.Resolve<IComponentResolver>();
+         var controller = new ContactController(componentResolver);
 
          // Act
-         controller.Post("value");
+         var result = controller.GetContactById(3);
 
          // Assert
+         Assert.IsNotNull(result);
+         Assert.AreEqual("Trump", result.LastName);
       }
 
-      [TestMethod]
-      public void Put()
+      #region Helpers
+
+      HttpRequestMessage GetRequest()
       {
-         // Arrange
-         ContactController controller = new ContactController();
-
-         // Act
-         controller.Put(5, "value");
-
-         // Assert
+         HttpConfiguration config = new HttpConfiguration();
+         HttpRequestMessage request = new HttpRequestMessage();
+         request.Properties["MS_HttpConfiguration"] = config;
+         return request;
       }
 
-      [TestMethod]
-      public void Delete()
+      T GetResponseData<T>(HttpResponseMessage result)
       {
-         // Arrange
-         ContactController controller = new ContactController();
-
-         // Act
-         controller.Delete(5);
-
-         // Assert
+         ObjectContent<T> content = result.Content as ObjectContent<T>;
+         if (content != null)
+         {
+            T data = (T)(content.Value);
+            return data;
+         }
+         else
+            return default(T);
       }
+      #endregion
    }
 }

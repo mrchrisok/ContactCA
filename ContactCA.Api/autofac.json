@@ -1,0 +1,25 @@
+{
+    "defaultAssembly": "ContactCA.Api",
+    "modules": [
+        { "type": "ContactCA.Core.RepositoryRegistrationModule" }
+    ],
+    "components": [
+        {
+            "type": "AppCore.ComponentResolver, AppCore",
+            "services": [
+                {
+                    "type": "AppCore.IComponentResolver, AppCore"
+                }
+            ],
+            "instanceScope": "single-instance"
+        },
+        {
+            "type": "AppCore.Logger, AppCore",
+            "services": [
+                {
+                    "type": "AppCore.ILogger, AppCore"
+                }
+            ]
+        }
+    ]
+}
