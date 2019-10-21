@@ -115,12 +115,6 @@
       <Version>11.0.1</Version>
     </PackageReference>
   </ItemGroup>
-  <ItemGroup>
-    <ProjectReference Include="..\ContactCA.Admin\ContactCA.Admin.csproj">
-      <Project>{1935E522-940C-4C97-8502-BCB4CDF52537}</Project>
-      <Name>ContactCA.Admin</Name>
-    </ProjectReference>
-  </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it.
        Other similar extension points exist, see Microsoft.Common.targets.

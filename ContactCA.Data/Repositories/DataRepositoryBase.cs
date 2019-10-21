@@ -22,7 +22,7 @@ namespace ContactCA.Data.Repositories
 
       #region Members.IDataRepository
 
-      public T Add(T entity)
+      public virtual T Add(T entity)
       {
          using (U entityContext = new U())
          {
@@ -32,7 +32,7 @@ namespace ContactCA.Data.Repositories
          }
       }
 
-      public void Remove(T entity)
+      public virtual void Remove(T entity)
       {
          using (U entityContext = new U())
          {
@@ -41,7 +41,7 @@ namespace ContactCA.Data.Repositories
          }
       }
 
-      public void Remove(int id)
+      public virtual void Remove(int id)
       {
          using (U entityContext = new U())
          {
@@ -51,7 +51,7 @@ namespace ContactCA.Data.Repositories
          }
       }
 
-      public T Update(T entity)
+      public virtual T Update(T entity)
       {
          using (U entityContext = new U())
          {
@@ -64,13 +64,13 @@ namespace ContactCA.Data.Repositories
          }
       }
 
-      public IEnumerable<T> Get()
+      public virtual IEnumerable<T> Get()
       {
          using (U entityContext = new U())
             return GetEntities(entityContext).ToArray().ToList();
       }
 
-      public T Get(int id)
+      public virtual T Get(int id)
       {
          using (U entityContext = new U())
             return GetEntity(entityContext, id);
@@ -119,9 +119,9 @@ namespace ContactCA.Data.Repositories
          }
       }
 
-      public void Dispose()
+      public virtual void Dispose()
       {
-         _entityContext.Dispose();
+         _entityContext?.Dispose();
       }
       #endregion
    }

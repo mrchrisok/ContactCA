@@ -12,7 +12,43 @@ namespace ContactCA.Data.Repositories
       {
       }
 
-      #region Members.Override
+      #region DataRepositoryBase overrides
+
+      public override Contact Add(Contact entity)
+      {
+         // need to build some rules around when/if to save a contact
+         // uniqueness by Email is not reasonable
+         // how about save if the person sends a new Date, ie. Email and B
+
+         if (entity.BestCallDateTime <= DateTime.UtcNow)
+            throw new ApplicationException("Contact date is invalid.");
+
+         var sameEmailContacts = GetContacts().Where(x => x.Email.Equals(entity.Email));
+
+         if (sameEmailContacts.Count(x => x.BestCallDateTime >= DateTime.UtcNow) >= 5)
+         {
+            // already 5 in the db .. don't save this one
+            return entity;
+         }
+
+         //if (sameEmailContacts.Any(x =>
+         //   x.BestCallDateTime >= DateTime.UtcNow
+         //   && x.BestCallDateTime.Year == entity.BestCallDateTime.Year
+         //   && x.BestCallDateTime.Month == entity.BestCallDateTime.Month
+         //   && (x.BestCallDateTime.Day == entity.BestCallDateTime.Day || x.BestCallDateTime.Day == entity.BestCallDateTime.Day + 1)))
+         //{
+         //   // 
+         //   var random = new Random();
+         //   entity.BestCallDateTime = entity.BestCallDateTime.AddDays(random.Next(2, 10));
+         //}
+
+         return base.Add(entity);
+      }
+
+      #endregion
+
+
+      #region DataRepositoryBase abstract implementations
 
       protected override Contact AddEntity(ContactCADbContext entityContext, Contact entity)
       {

@@ -43,7 +43,8 @@
           }).toArray()
         );
 
-        $(uniqueForms).bind("submit", function(e) {
+          $(uniqueForms).bind("submit", function (e) {
+
           var $form = $(this);
           var warningsFound = 0;
           var $inputs = $form.find("input,textarea,select").not("[type=submit],[type=image]").filter(settings.options.filter);
@@ -71,7 +72,8 @@
               settings.options.submitError($form, e, $inputs.jqBootstrapValidation("collectErrors", true));
             }
           } else {
-            $form.removeClass("error");
+             $form.removeClass("error");
+
             if ($.isFunction(settings.options.submitSuccess)) {
               settings.options.submitSuccess($form, e);
             }
@@ -884,7 +886,8 @@
       );
   };
 
-  var getValue = function($this) {
+   var getValue = function ($this) {
+
     // Extract the value we're talking about
     var value = $this.val();
     var type = $this.attr("type");
@@ -894,6 +897,10 @@
     if (type === "radio") {
       value = ($('input[name="' + $this.attr("name") + '"]:checked').length > 0 ? value : "");
     }
+      if ($this[0].tagName.toUpperCase() === "SELECT") {
+         //value = value === null ? $this.prop("min") : value;
+         value = value === null ? "" : value;
+      }
     return value;
   };
 
@@ -930,7 +937,8 @@
 
   };
 
-  $.jqBootstrapValidation = function(options) {
+   $.jqBootstrapValidation = function (options) {
+
     $(":input").not("[type=image],[type=submit]").jqBootstrapValidation.apply(this, arguments);
   };
 

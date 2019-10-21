@@ -1,4 +1,4 @@
-﻿body {
+﻿/*body {
     padding-top: 50px;
     padding-bottom: 20px;
 }
@@ -7,11 +7,39 @@
 .body-content {
     padding-left: 15px;
     padding-right: 15px;
-}
+}*/
 
 /* Set width on the form input elements since they're 100% wide by default */
 /*input,
 select,
 textarea {
     max-width: 280px;
+}*/
+
+/*move this later site.contact.css*/
+section#contact .form-group select {
+    padding: 20px;
+}
+
+select#calltime {
+    height: 67px;
+}
+
+select:required:invalid {
+    font-weight: 700;
+    color: #ced4da;
+    font-family: 'Montserrat', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol', 'Noto Color Emoji';
+}
+
+option[value=""][disabled] {
+    display: none;
+}
+
+/*.ui-datepicker .ui-widget-content {
+    background: #333;
+    border: 1px solid #555;
+    color: #EEE;
+}
+.ui-datepicker .ui-datepicker-title select {
+    color: #000;
 }*/
