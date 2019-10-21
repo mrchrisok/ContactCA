@@ -20,12 +20,12 @@ namespace ContactCA.Data.Repositories
          // uniqueness by Email is not reasonable
          // how about save if the person sends a new Date, ie. Email and B
 
-         if (entity.BestCallDateTime <= DateTime.UtcNow)
+         if (entity.BestTimeToCall <= DateTime.Now)
             throw new ApplicationException("Contact date is invalid.");
 
-         var sameEmailContacts = GetContacts().Where(x => x.Email.Equals(entity.Email));
+         var sameEmailContacts = GetContacts().Where(x => x.EmailAddress.Equals(entity.EmailAddress));
 
-         if (sameEmailContacts.Count(x => x.BestCallDateTime >= DateTime.UtcNow) >= 5)
+         if (sameEmailContacts.Count(x => x.BestTimeToCall >= DateTime.UtcNow) >= 5)
          {
             // already 5 in the db .. don't save this one
             return entity;
@@ -68,7 +68,7 @@ namespace ContactCA.Data.Repositories
                 select e;
       }
 
-      protected override Contact GetEntity(ContactCADbContext entityContext, int id)
+      protected override Contact GetEntity(ContactCADbContext entityContext, Guid id)
       {
          var query = (from e in entityContext.ContactSet
                       where e.ContactID == id
@@ -84,10 +84,10 @@ namespace ContactCA.Data.Repositories
 
       public Contact GetContact(string email)
       {
-         return GetContacts().SingleOrDefault(x => x.Email == email);
+         return GetContacts().SingleOrDefault(x => x.EmailAddress == email);
       }
 
-      public Contact GetContactById(int id)
+      public Contact GetContactById(Guid id)
       {
          return GetContacts().SingleOrDefault(x => x.ContactID == id);
       }
@@ -115,12 +115,12 @@ namespace ContactCA.Data.Repositories
 
       public IEnumerable<Contact> GetContactsByCallDateRange(DateTime dateBottom, DateTime dateTop)
       {
-         return GetContacts().Where(x => x.BestCallDateTime.Date >= dateBottom.Date && x.BestCallDateTime.Date <= dateTop.Date);
+         return GetContacts().Where(x => x.BestTimeToCall.Date >= dateBottom.Date && x.BestTimeToCall.Date <= dateTop.Date);
       }
 
       public IEnumerable<Contact> GetContactByCallTimeRange(DateTime timeBottom, DateTime timeTop)
       {
-         return GetContacts().Where(x => x.BestCallDateTime.TimeOfDay >= timeBottom.TimeOfDay && x.BestCallDateTime.TimeOfDay <= timeTop.TimeOfDay);
+         return GetContacts().Where(x => x.BestTimeToCall.TimeOfDay >= timeBottom.TimeOfDay && x.BestTimeToCall.TimeOfDay <= timeTop.TimeOfDay);
       }
       #endregion
    }

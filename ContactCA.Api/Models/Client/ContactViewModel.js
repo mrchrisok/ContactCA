@@ -46,8 +46,8 @@
       var model = {
          FirstName: self.firstName(),
          LastName: self.lastName(),
-         Email: self.email(),
-         PhoneNumber: self.phoneNumber(),
+         EmailAddress: self.email(),
+         Telephone: self.phoneNumber(),
          Message: self.message(),
          BestTimeToCall: self.bestTimeToCall()
       };

@@ -1,5 +1,6 @@
 ﻿using AppCore;
 using ContactCA.Data.Repositories.Contracts;
+using System;
 using System.Collections.Generic;
 using System.Data.Entity;
 using System.Linq;
@@ -18,7 +19,7 @@ namespace ContactCA.Data.Repositories
       protected abstract T AddEntity(U entityContext, T entity);
       protected abstract T UpdateEntity(U entityContext, T entity);
       protected abstract IEnumerable<T> GetEntities(U entityContext);
-      protected abstract T GetEntity(U entityContext, int id);
+      protected abstract T GetEntity(U entityContext, Guid id);
 
       #region Members.IDataRepository
 
@@ -41,7 +42,7 @@ namespace ContactCA.Data.Repositories
          }
       }
 
-      public virtual void Remove(int id)
+      public virtual void Remove(Guid id)
       {
          using (U entityContext = new U())
          {
@@ -70,7 +71,7 @@ namespace ContactCA.Data.Repositories
             return GetEntities(entityContext).ToArray().ToList();
       }
 
-      public virtual T Get(int id)
+      public virtual T Get(Guid id)
       {
          using (U entityContext = new U())
             return GetEntity(entityContext, id);

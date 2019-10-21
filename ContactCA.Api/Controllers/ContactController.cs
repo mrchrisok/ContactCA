@@ -1,6 +1,7 @@
 ﻿using AppCore;
 using ContactCA.Data.Entities;
 using ContactCA.Data.Repositories.Contracts;
+using System;
 using System.Linq;
 using System.Web.Http;
 
@@ -42,9 +43,9 @@ namespace ContactCA.Api.Controllers
 
       [HttpGet]
       [Route("get/{id}")]
-      public Contact GetContactById(int id)
+      public Contact GetContactById(string id)
       {
-         return _contactRepository.GetContactById(id);
+         return _contactRepository.GetContactById(new Guid(id));
       }
 
       [HttpGet]
@@ -82,9 +83,9 @@ namespace ContactCA.Api.Controllers
 
       [HttpPut]
       [Route("delete/{id}")]
-      public void DeleteContact(int id)
+      public void DeleteContact(string id)
       {
-         _contactRepository.Remove(id);
+         _contactRepository.Remove(new Guid(id));
       }
 
       [HttpPut]

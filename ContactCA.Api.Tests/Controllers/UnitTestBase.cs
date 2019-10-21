@@ -93,29 +93,29 @@ namespace ContactCA.Api.Tests.Controllers
          {
             new Contact()
             {
-               ContactID = 1,
+               ContactID = new Guid(),
                FirstName = "Mike",
                LastName = "Tyson",
-               PhoneNumber = "2223334444",
-               BestCallDateTime = DateTime.UtcNow.AddDays(1).AddHours(1).AddMinutes(15),
+               Telephone = "2223334444",
+               BestTimeToCall = DateTime.UtcNow.AddDays(1).AddHours(1).AddMinutes(15),
                DateCreated = DateTime.UtcNow.AddDays(-3).AddHours(1).AddMinutes(15)
             },
             new Contact()
             {
-               ContactID = 2,
+               ContactID = new Guid(),
                FirstName = "Yogi",
                LastName = "Bear",
-               PhoneNumber = "2223334444",
-               BestCallDateTime = DateTime.UtcNow.AddDays(1).AddHours(3).AddMinutes(30),
+               Telephone = "2223334444",
+               BestTimeToCall = DateTime.UtcNow.AddDays(1).AddHours(3).AddMinutes(30),
                DateCreated = DateTime.UtcNow.AddDays(-2).AddHours(3).AddMinutes(30)
             },
             new Contact()
             {
-               ContactID = 3,
+               ContactID = new Guid("C56A4180-65AA-42EC-A945-5FD21DEC0538"),
                FirstName = "Donald",
                LastName = "Trump",
-               PhoneNumber = "2223334444",
-               BestCallDateTime = DateTime.UtcNow.AddDays(1).AddHours(1).AddMinutes(15),
+               Telephone = "2223334444",
+               BestTimeToCall = DateTime.UtcNow.AddDays(1).AddHours(1).AddMinutes(15),
                DateCreated = DateTime.UtcNow.AddDays(-1).AddHours(5).AddMinutes(45)
             }
          };
@@ -125,8 +125,9 @@ namespace ContactCA.Api.Tests.Controllers
          mockContactRepository.Setup(x => x.GetContactsByFirstName(It.IsAny<string>()))
             .Returns((string firstName) => contacts.Where(x => x.FirstName == firstName));
 
-         mockContactRepository.Setup(x => x.GetContactById(It.IsAny<int>()))
-            .Returns((int id) => contacts.FirstOrDefault(x => x.ContactID == id));
+         mockContactRepository.Setup(x => x.GetContactById(It.IsAny<Guid>()))
+            .Returns((Guid id) => contacts.FirstOrDefault(x => x.ContactID == id));
+
 
          return mockContactRepository.Object;
       }

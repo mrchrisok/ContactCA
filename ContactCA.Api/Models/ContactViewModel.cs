@@ -1,28 +1,31 @@
 ﻿using System;
+using System.ComponentModel.DataAnnotations;
 
 namespace ContactCA.Api.Models
 {
    public class ContactViewModel : ContactCAViewModelBase, IContactViewModel
    {
-      public int ContactID { get; set; }
+      public string ContactID { get; set; }
+      [StringLength(40)]
       public string FirstName { get; set; }
+      [StringLength(40)]
       public string LastName { get; set; }
-      public string Email { get; set; }
-      public string PhoneNumber { get; set; }
-      public DateTime BestCallDateTime { get; set; }
-      public DateTime BestCallDate { get; set; }
-      public DateTime BestCallTime { get; set; }
+      [StringLength(80)]
+      public string EmailAdress { get; set; }
+      [StringLength(16)]
+      public string Telephone { get; set; }
+      [StringLength(400)]
+      public string Message { get; set; }
+      public DateTime BestTimeToCall { get; set; }
    }
 
    public interface IContactViewModel
    {
-      int ContactID { get; set; }
+      string ContactID { get; set; }
       string FirstName { get; set; }
       string LastName { get; set; }
-      string Email { get; set; }
-      string PhoneNumber { get; set; }
-      DateTime BestCallDateTime { get; set; }
-      DateTime BestCallDate { get; set; }
-      DateTime BestCallTime { get; set; }
+      string EmailAdress { get; set; }
+      string Telephone { get; set; }
+      DateTime BestTimeToCall { get; set; }
    }
 }

@@ -7,7 +7,7 @@ namespace ContactCA.Data.Repositories.Contracts
    public interface IContactRepository : IDataRepository<Contact>
    {
       Contact GetContact(string email);
-      Contact GetContactById(int id);
+      Contact GetContactById(Guid id);
       IEnumerable<Contact> GetContacts();
       IEnumerable<Contact> GetContactsByFirstName(string firstName);
       IEnumerable<Contact> GetContactsByLastName(string lastName);

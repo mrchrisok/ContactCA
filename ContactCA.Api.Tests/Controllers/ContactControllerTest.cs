@@ -2,6 +2,7 @@
 using Autofac;
 using ContactCA.Api.Controllers;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
+using System;
 using System.Linq;
 using System.Net.Http;
 using System.Web.Http;
@@ -48,8 +49,10 @@ namespace ContactCA.Api.Tests.Controllers
          var componentResolver = Container.Resolve<IComponentResolver>();
          var controller = new ContactController(componentResolver);
 
+         var testGuid = new Guid("C56A4180-65AA-42EC-A945-5FD21DEC0538");
+
          // Act
-         var result = controller.GetContactById(3);
+         var result = controller.GetContactById(testGuid.ToString());
 
          // Assert
          Assert.IsNotNull(result);

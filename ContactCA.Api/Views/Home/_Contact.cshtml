@@ -18,31 +18,35 @@
                                     <div class="col-md-12">
                                         <div class="form-group">
                                             <input class="form-control" id="fname" data-bind="value: firstName"
-                                                   type="text" placeholder="Your First Name *" required="required" data-validation-required-message="Please enter your first name.">
+                                                   type="text" placeholder="Your First Name *" required="required" data-validation-required-message="Please enter your first name." 
+                                                   maxlength="40" data-validation-maxlength-message="Maximum length exceeded.">
                                             <p class="help-block text-danger"></p>
                                         </div>
                                         <div class="form-group">
                                             <input class="form-control" id="lname" data-bind="value: lastName"
-                                                   type="text" placeholder="Your Last Name *" required="required" data-validation-required-message="Please enter your last name.">
+                                                   type="text" placeholder="Your Last Name *" required="required" data-validation-required-message="Please enter your last name." 
+                                                   maxlength="40" data-validation-maxlength-message="Maximum length exceeded.">
                                             <p class="help-block text-danger"></p>
                                         </div>
                                     </div>
                                 </div>
                                 <div class="form-group">
                                     <input class="form-control" id="email" data-bind="value: email"
-                                           type="email" placeholder="Your Email *" required="required" data-validation-required-message="Please enter your email address.">
+                                           type="email" placeholder="Your Email *" required="required" data-validation-required-message="Please enter your email address." 
+                                           maxlength="80" data-validation-maxlength-message="Maximum length exceeded.">
                                     <p class="help-block text-danger"></p>
                                 </div>
                                 <div class="form-group">
                                     <input class="form-control" id="phone" data-bind="value: phoneNumber"
-                                           type="tel" placeholder="Your Phone *" required="required" data-validation-required-message="Please enter your phone number.">
+                                           type="tel" placeholder="Your Phone *" required="required" data-validation-required-message="Please enter your phone number." 
+                                           maxlength="16" data-validation-maxlength-message="Maximum length exceeded.">
                                     <p class="help-block text-danger"></p>
                                 </div>
                             </div>
                             <div class="col-md-6">
                                 <div class="form-group">
                                     <textarea class="form-control" id="message" data-bind="value: message"
-                                              placeholder="Your Message "></textarea>
+                                              placeholder="Your Message " maxlength="400" data-validation-maxlength-message="Maximum length exceeded."></textarea>
                                     <p class="help-block text-danger"></p>
                                 </div>
                                 <div class="row">

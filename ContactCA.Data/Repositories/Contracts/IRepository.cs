@@ -13,9 +13,9 @@ namespace ContactCA.Data.Repositories.Contracts
    {
       T Add(T entity);
       IEnumerable<T> Get();
-      T Get(int id);
+      T Get(Guid id);
       void Remove(T entity);
-      void Remove(int id);
+      void Remove(Guid id);
       T Update(T entity);
    }
    public interface IDbContextRepository<T> : IDataRepository<T>, IDisposable

@@ -6,16 +6,17 @@ namespace ContactCA.Data.Entities
 {
    public class Contact : EntityBase, IIdentifiableEntity
    {
-      public int ContactID { get; set; }
+      public Guid ContactID { get; set; }
       public string FirstName { get; set; }
       public string LastName { get; set; }
-      public string Email { get; set; }
-      public string PhoneNumber { get; set; }
-      public DateTime BestCallDateTime { get; set; }
+      public string EmailAddress { get; set; }
+      public string Telephone { get; set; }
+      public string Message { get; set; }
+      public DateTime BestTimeToCall { get; set; }
 
       #region Members.IIdentifiableEntity
       [JsonIgnore]
-      int IIdentifiableEntity.EntityID
+      Guid IIdentifiableEntity.EntityID
       {
          get { return ContactID; }
          set { ContactID = value; }

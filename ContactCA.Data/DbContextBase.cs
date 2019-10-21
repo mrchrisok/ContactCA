@@ -121,7 +121,7 @@ namespace ContactCA.Data
                   result.Append($"\r\n  Entity of type {error.Entry.Entity.GetType().ToString()} has validation error \"{validationError.ErrorMessage}\" for property {validationError.PropertyName}.\r\n");
                   if (error.Entry.Entity is IIdentifiableEntity domainEntity)
                   {
-                     result.Append((domainEntity.EntityID == 0)
+                     result.Append((domainEntity.EntityID == null)
                         ? "  This entity was created in this session.\r\n"
                         : $"  The id of the entity is {domainEntity.EntityID}.\r\n");
                   }

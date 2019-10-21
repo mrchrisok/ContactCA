@@ -70,24 +70,26 @@ $(function() {
         var model = {
            FirstName: firstName,
            LastName: $("input#lname").val(),
-           Email: $("input#email").val(),
-           PhoneNumber: $("input#phone").val(),
+           EmailAddress: $("input#email").val(),
+           Telephone: $("input#phone").val(),
            Message: $("textarea#message").val(),
-           BestCallDateTime: $("select#calltime").val()
+           BestTimeToCall: $("select#calltime").val()
         };
 
         // convert the time to a string
         var bestDateToCall = new Date().toLocaleDateString();
-        var userHourToCall = Math.floor(parseInt(model.BestCallDateTime) / 60);
-        var bestHourToCallMinute = parseInt(model.BestCallDateTime) % 60;
+        var userHourToCall = Math.floor(parseInt(model.BestTimeToCall) / 60);
+        var bestHourToCallMinute = parseInt(model.BestTimeToCall) % 60;
         var bestMinuteToCall = bestHourToCallMinute > 0 ? (bestHourToCallMinute).toString() : "00";
         var amPm = userHourToCall >= 12 ? " PM" : " AM";
         var bestHourToCall = userHourToCall > 12 ? userHourToCall - 12 : userHourToCall;
         var bestDateTimeToCall = bestDateToCall + " " + bestHourToCall + ":" + bestMinuteToCall + amPm;
-        model.BestCallDateTime = new Date(bestDateTimeToCall).toISOString();
+        model.BestTimeToCall = new Date(bestDateTimeToCall).toISOString();
 
       $this = $("#sendMessageButton");
         $this.prop("disabled", true); // Disable submit button until AJAX call is complete to prevent duplicate messages
+
+        debugger;
 
       $.ajax({
          url: "/api/contact/add",
