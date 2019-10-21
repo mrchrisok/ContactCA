@@ -1,4 +1,4 @@
-﻿using ContactCA.Api.Models;
+﻿using ContactCA.Api.Models.ContactCA.Api.Models;
 using ContactCA.Api.Providers;
 using Microsoft.AspNet.Identity;
 using Microsoft.Owin;

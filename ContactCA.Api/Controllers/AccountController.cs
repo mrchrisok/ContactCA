@@ -16,6 +16,7 @@ using Microsoft.Owin.Security.OAuth;
 using ContactCA.Api.Models;
 using ContactCA.Api.Providers;
 using ContactCA.Api.Results;
+using ContactCA.Api.Models.ContactCA.Api.Models;
 
 namespace ContactCA.Api.Controllers
 {
