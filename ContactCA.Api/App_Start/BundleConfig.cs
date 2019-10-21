@@ -18,6 +18,8 @@ namespace ContactCA.Api
             "~/Scripts/moment.min.js"
             ));
 
+         // this bundle breaks in azure
+         // used a <style> tag instead
          bundles.Add(new StyleBundle("~/Content/fonts").Include(
             "~/Content/vendor/fontawesome-free/css/all.min.css"));
 
