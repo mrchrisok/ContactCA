@@ -1,6 +1,8 @@
 ﻿using AppCore;
 using Autofac;
 using ContactCA.Api.Controllers;
+using ContactCA.Api.Models;
+using ContactCA.Api.WorkerServices;
 using ContactCA.Data;
 using ContactCA.Data.Entities;
 using ContactCA.Data.Repositories.Contracts;
@@ -30,6 +32,8 @@ namespace ContactCA.Api.Tests.Controllers
 
                // Repositories
                builder.RegisterInstance(GetMockContactRepository());
+               builder.RegisterInstance(GetMockHomeViewModel());
+               builder.RegisterInstance(GetMockHomeWorkerService());
 
                // Register the CompanyDataRepository for property injection not constructor allowing circular references
                //builder.RegisterType<ContactRepository>().As<IContactRepository>()
@@ -54,6 +58,29 @@ namespace ContactCA.Api.Tests.Controllers
          {
             return Container.Resolve<ContactCADbContext>();
          }
+      }
+
+      protected IHomeViewModel GetMockHomeViewModel()
+      {
+         var mockHomeViewModel = new Mock<IHomeViewModel>();
+         mockHomeViewModel.Setup(x => x.ShowAll).Returns(true);
+         mockHomeViewModel.Setup(x => x.ShowClients).Returns(false);
+
+         return mockHomeViewModel.Object;
+      }
+
+      protected IHomeWorkerService GetMockHomeWorkerService()
+      {
+         var mockHomeViewModel = new Mock<IHomeViewModel>();
+         mockHomeViewModel.Setup(x => x.ShowAll).Returns(false);
+         mockHomeViewModel.Setup(x => x.ShowClients).Returns(false);
+         //
+
+         var mockHomeWorkerService = new Mock<IHomeWorkerService>();
+
+         mockHomeWorkerService.Setup(x => x.GetHomeViewModel()).Returns(mockHomeViewModel.Object);
+
+         return mockHomeWorkerService.Object;
       }
 
       protected IContactRepository GetMockContactRepository()

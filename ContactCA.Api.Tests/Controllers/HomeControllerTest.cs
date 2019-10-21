@@ -1,6 +1,7 @@
 ﻿using AppCore;
 using Autofac;
 using ContactCA.Api.Controllers;
+using ContactCA.Api.Models;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using System.Web.Mvc;
 
@@ -21,7 +22,7 @@ namespace ContactCA.Api.Tests.Controllers
 
          // Assert
          Assert.IsNotNull(result);
-         Assert.AreEqual("Home Page", result.ViewBag.Title);
+         Assert.IsTrue(result.Model is IHomeViewModel);
       }
    }
 }
