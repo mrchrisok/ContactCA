@@ -27,6 +27,9 @@
     @Styles.Render("~/Content/site")
     @RenderSection("pageStyles", required: false)
 
+    <!-- reCaptcha -->
+    <script src="https://www.google.com/recaptcha/api.js?render=explicit"></script>
+
 </head>
 <body id="page-top">
 
@@ -129,5 +132,6 @@
             @RenderSection("ko_apply", required: false)
         });
     </script>
+
 </body>
 </html>

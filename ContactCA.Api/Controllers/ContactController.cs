@@ -1,9 +1,12 @@
 ﻿using AppCore;
+using ContactCA.Api.WorkerServices;
+using ContactCA.Data.DataModels;
 using ContactCA.Data.Entities;
 using ContactCA.Data.Repositories.Contracts;
 using System;
 using System.Linq;
 using System.Web.Http;
+using System.Web.Http.Results;
 
 namespace ContactCA.Api.Controllers
 {
@@ -17,10 +20,12 @@ namespace ContactCA.Api.Controllers
 
          _resolver = resolver;
          _contactRepository = _resolver.Resolve<IContactRepository>();
+         _contactApiWorkerServcice = _resolver.Resolve<IContactApiWorkerService>();
       }
 
       protected IComponentResolver _resolver;
       protected IContactRepository _contactRepository;
+      protected IContactApiWorkerService _contactApiWorkerServcice;
 
       #region GET methods
 
@@ -67,18 +72,30 @@ namespace ContactCA.Api.Controllers
       [AllowAnonymous]
       [HttpPost]
       [Route("add")]
-      public Contact AddContact([FromBody]Contact contact)
+      public IHttpActionResult AddContact([FromBody]ContactDataModel model)
       {
-         var savedContact = _contactRepository.Add(contact);
+         // todo: api docs should reflect that the RecaptchaResponse is not emitted
 
-         return savedContact;
+         var verifiedModel = _contactApiWorkerServcice.VerifyReCaptchaResponse(model);
+
+         if (verifiedModel == null)
+            return new InternalServerErrorResult(Request);
+         else
+         {
+            var contactRepository = _resolver.Resolve<IContactRepository>();
+            var savedContact = contactRepository.Add(model.Contact);
+
+            return Ok(_contactApiWorkerServcice.GetContactDataModel(savedContact));
+         }
       }
 
       [HttpPut]
       [Route("update")]
-      public Contact UpdateContact([FromBody]Contact contact)
+      public ContactDataModel UpdateContact([FromBody]ContactDataModel model)
       {
-         return _contactRepository.Update(contact);
+         var updatedContact = _contactRepository.Update(model.Contact);
+
+         return _contactApiWorkerServcice.GetContactDataModel(updatedContact);
       }
 
       [HttpPut]
@@ -90,9 +107,9 @@ namespace ContactCA.Api.Controllers
 
       [HttpPut]
       [Route("delete")]
-      public void DeleteContact([FromBody]Contact contact)
+      public void DeleteContact([FromBody]ContactDataModel model)
       {
-         _contactRepository.Remove(contact);
+         _contactRepository.Remove(model.Contact);
       }
    }
 }

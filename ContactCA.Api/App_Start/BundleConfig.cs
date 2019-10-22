@@ -19,7 +19,7 @@ namespace ContactCA.Api
             ));
 
          // this bundle breaks in azure
-         // used a <style> tag instead
+         // not able to serve the fontawesome stuff :(
          bundles.Add(new StyleBundle("~/Content/fonts").Include(
             "~/Content/vendor/fontawesome-free/css/all.min.css"));
 
@@ -51,18 +51,12 @@ namespace ContactCA.Api
 
          bundles.Add(new ScriptBundle("~/bundles/contact").Include(
                "~/Content/js/jqBootstrapValidation.js"
-               , "~/Content/js/contact_me.js"
                , "~/Scripts/bootstrap-datetimepicker.min.js"
                , "~/Models/Client/ContactViewModel.js"
                ));
 
          bundles.Add(new ScriptBundle("~/bundles/agency").Include(
             "~/Content/js/agency.min.js"));
-
-         //// Use the development version of Modernizr to develop with and learn from. Then, when you're
-         //// ready for production, use the build tool at https://modernizr.com to pick only the tests you need.
-         //bundles.Add(new ScriptBundle("~/bundles/modernizr").Include(
-         //            "~/Scripts/modernizr-*"));
 
       }
    }

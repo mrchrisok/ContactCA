@@ -17,6 +17,8 @@ namespace ContactCA.Api.Models
       [StringLength(400)]
       public string Message { get; set; }
       public DateTime BestTimeToCall { get; set; }
+
+      public string RecaptchaSiteKey { get; set; }
    }
 
    public interface IContactViewModel
@@ -27,5 +29,6 @@ namespace ContactCA.Api.Models
       string EmailAdress { get; set; }
       string Telephone { get; set; }
       DateTime BestTimeToCall { get; set; }
+      string RecaptchaSiteKey { get; set; }
    }
 }

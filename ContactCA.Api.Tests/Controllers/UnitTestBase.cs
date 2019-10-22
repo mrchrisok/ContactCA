@@ -4,6 +4,7 @@ using ContactCA.Api.Controllers;
 using ContactCA.Api.Models;
 using ContactCA.Api.WorkerServices;
 using ContactCA.Data;
+using ContactCA.Data.DataModels;
 using ContactCA.Data.Entities;
 using ContactCA.Data.Repositories.Contracts;
 using Moq;
@@ -33,7 +34,10 @@ namespace ContactCA.Api.Tests.Controllers
                // Repositories
                builder.RegisterInstance(GetMockContactRepository());
                builder.RegisterInstance(GetMockHomeViewModel());
+
+               // worker services
                builder.RegisterInstance(GetMockHomeWorkerService());
+               builder.RegisterInstance(GetContactApiWorkerService());
 
                // Register the CompanyDataRepository for property injection not constructor allowing circular references
                //builder.RegisterType<ContactRepository>().As<IContactRepository>()
@@ -81,6 +85,20 @@ namespace ContactCA.Api.Tests.Controllers
          mockHomeWorkerService.Setup(x => x.GetHomeViewModel()).Returns(mockHomeViewModel.Object);
 
          return mockHomeWorkerService.Object;
+      }
+      protected IContactApiWorkerService GetContactApiWorkerService()
+      {
+         //var contact = new Contact() { FirstName = "Test", LastName = "Contact" };
+
+         var mockContactApiWorkerService = new Mock<IContactApiWorkerService>();
+         mockContactApiWorkerService.Setup(x => x.GetContactDataModel(It.IsAny<Contact>()))
+            .Returns((Contact contact) => new ContactDataModel(contact));
+
+         // fail all for now .. for a real project, can set up pass/fail scenarios
+         mockContactApiWorkerService.Setup(x => x.VerifyReCaptchaResponse(It.IsAny<ContactDataModel>()))
+            .Returns((ContactDataModel model) => null);
+
+         return mockContactApiWorkerService.Object;
       }
 
       protected IContactRepository GetMockContactRepository()

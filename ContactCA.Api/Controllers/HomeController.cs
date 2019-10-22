@@ -1,5 +1,4 @@
 ﻿using AppCore;
-using ContactCA.Api.Models;
 using ContactCA.Api.WorkerServices;
 using System.Web.Mvc;
 
@@ -25,7 +24,9 @@ namespace ContactCA.Api.Controllers
       [HttpGet]
       public ActionResult Contact()
       {
-         var model = _resolver.Resolve<IContactViewModel>();
+         var contactWorkerService = _resolver.Resolve<IContactWorkerService>();
+
+         var model = contactWorkerService.GetContactViewModel();
 
          return PartialView("~/Views/Home/_Contact.cshtml", model);
       }

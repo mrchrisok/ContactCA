@@ -300,6 +300,8 @@
     <Compile Include="Providers\ApplicationOAuthProvider.cs" />
     <Compile Include="Results\ChallengeResult.cs" />
     <Compile Include="Startup.cs" />
+    <Compile Include="WorkerServices\Api\ContactApiWorkerService.cs" />
+    <Compile Include="WorkerServices\ContactWorkerService.cs" />
     <Compile Include="WorkerServices\HomeWorkerService.cs" />
     <Compile Include="WorkerServices\WorkerServiceBase.cs" />
   </ItemGroup>
@@ -341,7 +343,6 @@
     <Content Include="Content\img\team\3.jpg" />
     <Content Include="Content\js\agency.js" />
     <Content Include="Content\js\agency.min.js" />
-    <Content Include="Content\js\contact_me.js" />
     <Content Include="Content\js\jqBootstrapValidation.js" />
     <Content Include="Content\themes\base\accordion.css" />
     <Content Include="Content\themes\base\all.css" />

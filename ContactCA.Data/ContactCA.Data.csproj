@@ -43,6 +43,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="ContactCADbContext.cs" />
+    <Compile Include="DataModels\ContactDataModel.cs" />
     <Compile Include="DbContextBase.cs" />
     <Compile Include="Entities\Contact.cs" />
     <Compile Include="Entities\EntityBase.cs" />

@@ -20,14 +20,16 @@ namespace ContactCA.Data.Repositories
          // uniqueness by Email is not reasonable
          // how about save if the person sends a new Date, ie. Email and B
 
-         if (entity.BestTimeToCall <= DateTime.Now)
-            throw new ApplicationException("Contact date is invalid.");
+         //if (entity.BestTimeToCall <= DateTime.Now)
+         //   throw new ApplicationException("Contact date is invalid.");
 
          var sameEmailContacts = GetContacts().Where(x => x.EmailAddress.Equals(entity.EmailAddress));
 
-         if (sameEmailContacts.Count(x => x.BestTimeToCall >= DateTime.UtcNow) >= 5)
+         if (sameEmailContacts.Count(x => x.BestTimeToCall >= DateTime.UtcNow) >= 50)
          {
-            // already 5 in the db .. don't save this one
+            // already 50 in the db .. don't save this one
+            // my generousity has its limits
+
             return entity;
          }
 

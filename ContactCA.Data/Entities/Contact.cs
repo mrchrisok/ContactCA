@@ -6,6 +6,11 @@ namespace ContactCA.Data.Entities
 {
    public class Contact : EntityBase, IIdentifiableEntity
    {
+      public Contact()
+      {
+
+      }
+
       public Guid ContactID { get; set; }
       public string FirstName { get; set; }
       public string LastName { get; set; }
