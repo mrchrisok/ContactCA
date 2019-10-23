@@ -7,31 +7,38 @@ namespace ContactCA.Api
       // For more information on bundling, visit https://go.microsoft.com/fwlink/?LinkId=301862
       public static void RegisterBundles(BundleCollection bundles)
       {
-         // layout
+         // _layout 
          // --------------------------
          bundles.Add(new StyleBundle("~/Content/bootstrap").Include(
             "~/Content/bootstrap.min.css"
             , "~/Content/bootstrap-datetimepicker.min.css"
             ));
 
-         bundles.Add(new ScriptBundle("~/bundles/moment").Include(
-            "~/Scripts/moment.min.js"
-            ));
-
          // this bundle breaks in azure
          // not able to serve the fontawesome stuff :(
          bundles.Add(new StyleBundle("~/Content/fonts").Include(
-            "~/Content/vendor/fontawesome-free/css/all.min.css"));
+            //"~/Content/vendor/fontawesome-free/css/all.min.css"
+            ));
 
          bundles.Add(new StyleBundle("~/Content/site").Include(
-            "~/Content/css/agency.min.css",
             "~/Content/Site.css"
+            //"~/Content/css/agency.min.css"
             ));
+
+         //bundles.Add(new StyleBundle("~/Content/agency")
+         //   .IncludeDirectory("~/Content/css", "*.css", true)
+         //   .IncludeDirectory("~/Content/themes", "*.css", true)
+         //   .IncludeDirectory("~/Content/vendor", "*.css", true)
+         //   );
 
          //
          bundles.Add(new ScriptBundle("~/bundles/jquery").Include(
             "~/Scripts/jquery-3.4.1.min.js"
             //, "~/Scripts/jquery-ui-1.12.1.min.js"
+            ));
+
+         bundles.Add(new ScriptBundle("~/bundles/moment").Include(
+            "~/Scripts/moment.min.js"
             ));
 
          bundles.Add(new ScriptBundle("~/bundles/bootstrap").Include(
@@ -46,7 +53,7 @@ namespace ContactCA.Api
              "~/Scripts/knockout.mapping-latest.js"));
 
 
-         // contact
+         // _contact
          // --------------------------------
 
          bundles.Add(new ScriptBundle("~/bundles/contact").Include(

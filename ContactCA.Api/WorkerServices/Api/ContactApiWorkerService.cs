@@ -30,10 +30,10 @@ namespace ContactCA.Api.WorkerServices
             using (var webClient = new HttpClient())
             {
                var reCaptchaVerifyParams = new Dictionary<string, string>
-            {
-               {"secret", ConfigurationManager.AppSettings["reCapthchaSecretKey"] },
-               {"response", model.RecaptchaResponse }
-            };
+               {
+                  {"secret", ConfigurationManager.AppSettings["reCapthchaSecretKey"] },
+                  {"response", model.RecaptchaResponse }
+               };
 
                //webClient.BaseAddress = new Uri("https://www.google.com/recaptcha/api/siteverify");
                var content = new StringContent(JsonConvert.SerializeObject(reCaptchaVerifyParams), Encoding.UTF8, "application/json");
