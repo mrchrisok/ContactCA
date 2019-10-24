@@ -1,6 +1,6 @@
-﻿using Swashbuckle.Swagger;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Web.Http.Description;
+using Swashbuckle.Swagger;
 
 namespace ContactCA.Api.App_Start
 {
@@ -17,26 +17,20 @@ namespace ContactCA.Api.App_Start
                parameters = new List<Parameter> {
                   new Parameter
                   {
-                     type = "string",
-                     name = "grant_type",
-                     required = true,
-                     @in = "formData",
-                     @default = "password"
+                     type = "string", name = "grant_type", required = true, @in = "formData", @default = "password"
                   },
                   new Parameter
                   {
-                     type = "string",
-                     name = "username",
-                     required = true,
-                     @in = "formData"
+                     type = "string", name = "username", required = true, @in = "formData"
                   },
                   new Parameter
                   {
-                     type = "string",
-                     name = "password",
-                     required = true,
-                     @in = "formData"
+                     type = "string", name = "password", required = true, @in = "formData"
                   }
+               },
+               responses = new Dictionary<string, Response>
+               {
+                  { "200", new Response() {description = "OK", schema = schemaRegistry.GetOrRegister(typeof(object)) } }
                }
             }
          });
