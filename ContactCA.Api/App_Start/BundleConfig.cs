@@ -14,22 +14,19 @@ namespace ContactCA.Api
             , "~/Content/bootstrap-datetimepicker.min.css"
             ));
 
-         // this bundle breaks in azure
-         // not able to serve the fontawesome stuff :(
-         bundles.Add(new StyleBundle("~/Content/fonts").Include(
-            //"~/Content/vendor/fontawesome-free/css/all.min.css"
-            ));
-
-         bundles.Add(new StyleBundle("~/Content/site").Include(
-            "~/Content/Site.css"
-            //"~/Content/css/agency.min.css"
-            ));
+         // todo: figure out how to use bundling to successfully deliver css
+         // currently doing so fails in Azure because the .css files look for images in the wrong place
 
          //bundles.Add(new StyleBundle("~/Content/agency")
          //   .IncludeDirectory("~/Content/css", "*.css", true)
          //   .IncludeDirectory("~/Content/themes", "*.css", true)
          //   .IncludeDirectory("~/Content/vendor", "*.css", true)
          //   );
+
+         bundles.Add(new StyleBundle("~/Content/site").Include(
+            "~/Content/Site.css"
+            //"~/Content/css/agency.min.css"
+            ));
 
          //
          bundles.Add(new ScriptBundle("~/bundles/jquery").Include(

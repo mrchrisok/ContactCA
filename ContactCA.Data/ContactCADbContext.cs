@@ -17,6 +17,7 @@ namespace ContactCA.Data
       #region Sets
 
       public DbSet<Contact> ContactSet { get; set; }
+      public DbSet<MetaSetting> MetaSettingSet { get; set; }
 
       #endregion
 

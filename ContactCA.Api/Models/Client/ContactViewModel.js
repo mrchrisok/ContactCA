@@ -26,6 +26,13 @@ var contactViewModel = function () {
 
    self.initRecaptcha = function () {
 
+      var fInit = this;
+      fInit.success = false;
+      fInit.delay = 0;
+
+      // need to figure out how to use setTimeout for this
+      // why? because if Google doesn't serve the .js file or is down, will get stuck here
+
       grecaptcha.render("reCaptchaWidget", {
          "sitekey": $("#reCaptchaSiteKey").attr("value"),
          "size": "compact",
@@ -41,6 +48,7 @@ var contactViewModel = function () {
             self.reCaptchaResponse = null;
          }
       });
+
    };
 
    self.save = function () {
