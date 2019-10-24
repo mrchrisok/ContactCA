@@ -104,12 +104,5 @@ namespace ContactCA.Api.Controllers
       {
          _contactRepository.Remove(new Guid(id));
       }
-
-      [HttpPut]
-      [Route("delete")]
-      public void DeleteContact([FromBody]ContactDataModel model)
-      {
-         _contactRepository.Remove(model.Contact);
-      }
    }
 }
