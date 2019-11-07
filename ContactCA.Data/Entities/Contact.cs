@@ -1,6 +1,6 @@
-﻿using ContactCA.Data.Repositories.Contracts;
+﻿using System;
+using ContactCA.Data.Repositories.Contracts;
 using Newtonsoft.Json;
-using System;
 
 namespace ContactCA.Data.Entities
 {

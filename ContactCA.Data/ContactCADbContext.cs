@@ -1,5 +1,5 @@
-﻿using ContactCA.Data.Entities;
-using System.Data.Entity;
+﻿using System.Data.Entity;
+using ContactCA.Data.Entities;
 
 namespace ContactCA.Data
 {

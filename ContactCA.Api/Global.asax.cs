@@ -1,15 +1,15 @@
-﻿using AppCore.Mvc;
+﻿using System.Reflection;
+using System.Web.Http;
+using System.Web.Mvc;
+using System.Web.Optimization;
+using System.Web.Routing;
+using AppCore.Mvc;
 using AppCore.WebApi;
 using Autofac;
 using Autofac.Configuration;
 using Autofac.Integration.Mvc;
 using Autofac.Integration.WebApi;
 using Microsoft.Extensions.Configuration;
-using System.Reflection;
-using System.Web.Http;
-using System.Web.Mvc;
-using System.Web.Optimization;
-using System.Web.Routing;
 
 namespace ContactCA.Api
 {

@@ -1,5 +1,4 @@
-﻿using ContactCA.Data.Repositories.Contracts;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.Data.Entity;
@@ -12,6 +11,7 @@ using System.Data.SqlClient;
 using System.Linq;
 using System.Reflection;
 using System.Text;
+using ContactCA.Data.Repositories.Contracts;
 
 namespace ContactCA.Data
 {
